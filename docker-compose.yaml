@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_DB: videodb
+      POSTGRES_USER: fam_video_user
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - .:/fampay
+    ports:
+      - "5432:5432"
+
+  search-api:
+    build: .
+    restart: always
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/fampay
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

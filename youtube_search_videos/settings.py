@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-@he(mtw5^&lua)2)vk%k-wp3c_2q(bl4zbc*5u0=2174g&s3eu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'youtube_search_videos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'videodb',
+        'USER': 'fam_video_user',
+        'PASSWORD': '123456',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 

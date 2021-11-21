@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime, timedelta
-
+import time
 import googleapiclient.discovery
 from youtube_search_videos.search_videos.models import (
     YoutubeVideoDetail)
@@ -35,13 +35,13 @@ class FetchYoutubeVideoList:
                 maxResults=self.fetch_per_request
             )
         else:
-            past_look_up_time = datetime.now() - timedelta(days=20)
+            past_look_up_time = (datetime.now() - timedelta(minutes=2)).strftime(
+                '%Y-%m-%dT%H:%M:%SZ')
             request = self.youtube.search().list(
                 part="snippet",
                 maxResults=self.fetch_per_request,
                 order="date",
-                publishedAfter=past_look_up_time.strftime(
-                    '%Y-%m-%dT%H:%M:%SZ'),
+                publishedAfter=past_look_up_time,
                 q=self.search_query,
                 type="video"
             )
@@ -55,10 +55,10 @@ class FetchYoutubeVideoList:
             save_videos_obj = SaveVideoDetails(items)
             save_videos_obj.save_all_items()
             self.processed_counts += len(items)
-            print(f"found {len(items)} videos")
             nextPageToken = response.get('nextPageToken')
             if self.processed_counts >= self.max_records_to_process or not nextPageToken:
                 return
+            time.sleep(1)
             self.fetch_youtube_video_details_helper(nextPageToken)
         except Exception as e:
             print(e)

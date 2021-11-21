@@ -13,5 +13,5 @@ class Command(BaseCommand):
         self.developer_key = DeveloperKey.get_activate_key()
         search_query = "cricket|politics|movie|india|share|official|football|news|music|funny|vlog|food|mobile"
         fetch_youtube_videos_obj = FetchYoutubeVideoList(
-            self.developer_key, search_query, max_records_to_process=3000)
+            self.developer_key, search_query, fetch_per_request=50,  max_records_to_process=3000)
         fetch_youtube_videos_obj.fetch_youtube_video_details()

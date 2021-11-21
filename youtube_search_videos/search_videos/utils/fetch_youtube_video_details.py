@@ -3,6 +3,7 @@
 import os
 from datetime import datetime, timedelta
 import time
+import re
 import googleapiclient.discovery
 from youtube_search_videos.search_videos.models import (
     YoutubeVideoDetail)
@@ -53,6 +54,7 @@ class FetchYoutubeVideoList:
                 print(ex)
                 return
             items = response.get("items")
+            print(f"feteched {len(items)} ")
             save_videos_obj = SaveVideoDetails(items)
             save_videos_obj.save_all_items()
             self.processed_counts += len(items)
@@ -86,8 +88,8 @@ class YoutubeObjToDbObject:
         snippet = self.item.get("snippet", {})
         published_at = snippet.get("publishedAt")
         channel_id = snippet.get("channelId")
-        title = snippet.get("title")
-        description = snippet.get("description")
+        title = snippet.get("title", "")
+        description = snippet.get("description", "")
         thumbnails = snippet.get("thumbnails")
         channel_title = snippet.get("channelTitle")
         return YoutubeVideoDetail(

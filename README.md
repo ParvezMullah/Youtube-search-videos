@@ -16,3 +16,9 @@ Steps to run the project:
     http://localhost:8000/admin/search_videos/developerkey/
 6. View Saved Video details
     http://localhost:8000/admin/search_videos/youtubevideodetail/
+
+Search APIs
+1. list api
+    http://localhost:8000/
+2. Search API
+    http://localhost:8000/search/?q=football

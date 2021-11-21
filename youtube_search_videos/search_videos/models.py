@@ -1,11 +1,12 @@
 from django.db import models
-
+from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.search import SearchVectorField
 # Create your models here.
 
 
 class YoutubeVideoDetail(models.Model):
     video_id = models.CharField(max_length=12, blank=True, null=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=256)
     description = models.TextField(null=True, blank=True)
     channel_id = models.CharField(max_length=32)
     channel_title = models.CharField(max_length=64)
@@ -14,6 +15,10 @@ class YoutubeVideoDetail(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+
+    class Meta:
+        indexes = (GinIndex(fields=["title"]),
+                   GinIndex(fields=["description"]))
 
 
 class DeveloperKey(models.Model):

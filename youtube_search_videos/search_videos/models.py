@@ -10,14 +10,14 @@ class YoutubeVideoDetail(models.Model):
     channel_id = models.CharField(max_length=32)
     channel_title = models.CharField(max_length=64)
     thumbnails = models.JSONField()
-    published_at = models.DateTimeField()
+    published_at = models.DateTimeField(db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
 
 
 class DeveloperKey(models.Model):
-    key = models.CharField(max_length=128)
+    key = models.CharField(max_length=128, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)

@@ -51,6 +51,7 @@ class FetchYoutubeVideoList:
             except Exception as ex:
                 self.developer_key.deactivate_key()
                 print(ex)
+                return
             items = response.get("items")
             save_videos_obj = SaveVideoDetails(items)
             save_videos_obj.save_all_items()

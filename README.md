@@ -9,7 +9,7 @@ Steps to run the project:
 2.Go to the project dictory and run
      docker-compose up
 3. create a admin
-    docker exec -it container_id python manage.py createsuperuser
+    docker exec -it youtube-search-videos_search-api_1 python manage.py createsuperuser
 4. Go to admin. Open browser and type
     localhost:8000/admin
 5. Add developer key. Untill we have a valid key in our DeveloperKey table a backgroup running command wont be fetching the youtube vidoe details.

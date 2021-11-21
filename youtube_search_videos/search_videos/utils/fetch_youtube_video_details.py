@@ -31,10 +31,11 @@ class FetchYoutubeVideoList:
         if token:
             request = self.youtube.search().list(
                 part="snippet",
-                pageToken=token
+                pageToken=token,
+                maxResults=self.fetch_per_request
             )
         else:
-            past_look_up_time = datetime.now() - timedelta(minutes=2)
+            past_look_up_time = datetime.now() - timedelta(days=20)
             request = self.youtube.search().list(
                 part="snippet",
                 maxResults=self.fetch_per_request,
@@ -80,7 +81,7 @@ class YoutubeObjToDbObject:
         self.item = item
 
     def get_db_obj(self):
-        video_id = self.item["id"]["videoId"]
+        video_id = self.item["id"].get("videoId")
         snippet = self.item.get("snippet", {})
         published_at = snippet.get("publishedAt")
         channel_id = snippet.get("channelId")

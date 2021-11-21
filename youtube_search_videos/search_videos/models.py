@@ -4,7 +4,7 @@ from django.db import models
 
 
 class YoutubeVideoDetail(models.Model):
-    video_id = models.CharField(max_length=12, unique=True)
+    video_id = models.CharField(max_length=12, blank=True, null=True)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     channel_id = models.CharField(max_length=32)

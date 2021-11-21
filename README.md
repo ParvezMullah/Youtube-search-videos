@@ -35,8 +35,10 @@
 
 1. list api
     http://localhost:8000/ 
+
     ![Alt text](https://github.com/ParvezMullah/youtube-search-videos/blob/master/screenshots/paginated%20video%20list.png?raw=true "List API")
     
 2. Search API 
     http://localhost:8000/search/?q=football
+    
     ![Alt text](https://github.com/ParvezMullah/youtube-search-videos/blob/master/screenshots/paginated%20video%20search.png?raw=true "Search API")

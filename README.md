@@ -25,7 +25,7 @@
     ![Alt text](https://github.com/ParvezMullah/youtube-search-videos/blob/master/screenshots/developer%20keys.png?raw=true "Add Developer Key")
 
 6. Manually Populate Videos (By running django custom command)  </br>
-    <code>docker exec -it youtube-search-videos_search-api_1 python manage.py fetch_youtube_videos<code> 
+    <code>docker exec -it youtube-search-videos_search-api_1 python manage.py fetch_youtube_videos</code> 
 7. View Saved Video details
     http://localhost:8000/admin/search_videos/youtubevideodetail/ 
     ![Alt text](https://github.com/ParvezMullah/youtube-search-videos/blob/master/screenshots/video%20list.png?raw=true "Add Developer Key")

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SearchVidoesConfig(AppConfig):
+class SearchVideosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'search_vidoes'
+    name = 'youtube_search_videos.search_videos'
